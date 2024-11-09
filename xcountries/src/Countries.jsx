@@ -1,12 +1,20 @@
 import Card from "./Card";
+import { useEffect, useState } from "react";
 
 const Countries = () => {
-  const countryList = [1, 2, 3, 4, 5];
+  const [countryList, setCountryList] = useState([]);
+
+  useEffect(() => {
+    fetch("https://xcountries-backend.azurewebsites.net/all")
+      .then((res) => res.json())
+      .then((data) => setCountryList(data))
+      .catch((err) => console.error("Error fetching data:", err));
+  }, []);
 
   return (
     <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
       {countryList.map((country) => (
-        <Card />
+        <Card key={country.abbr} flag={country.flag} name={country.name} />
       ))}
     </div>
   );

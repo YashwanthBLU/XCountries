@@ -1,4 +1,4 @@
-const Card = () => {
+const Card = ({ abbr, flag, name }) => {
   return (
     <div
       style={{
@@ -10,10 +10,11 @@ const Card = () => {
         justifyContent: "center",
         flexDirection: "column",
         borderRadius: 8,
+        margin: 5,
       }}
     >
-      <img src={``} alt="Image" />
-      <h3>Country</h3>
+      <img style={{ height: 100, width: 100 }} src={flag} alt={name} />
+      <h3>{name}</h3>
     </div>
   );
 };
